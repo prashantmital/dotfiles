@@ -60,6 +60,11 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif					
 " see :h vundle for more details or wiki for FAQ
 
 " --------------- User Settings ---------------
+" -- always show statusline, tabline and hide default vim info readout
+set laststatus=2
+set showtabline=2
+set noshowmode
+
 " -- turn on mouse functionality
 set mouse=a
 
