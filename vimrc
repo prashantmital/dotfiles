@@ -21,6 +21,7 @@ Plugin 'vim-scripts/indentpython.vim'		" PEP8 compliant indentation
 Plugin 'vim-airline/vim-airline'		" Statusbar vim-airline
 Plugin 'vim-airline/vim-airline-themes'		" Themes for vim-airline
 Plugin 'scrooloose/nerdtree'			" File browser
+Plugin 'tmux-plugins/vim-tmux'			" Plugin for editing tmux.conf
 
 " -- finalize Vundle setup
 call vundle#end()
