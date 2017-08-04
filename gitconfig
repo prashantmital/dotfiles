@@ -1,0 +1,14 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+[user]
+	name = Prashant Mital
+	email = prashantmital@gmail.com
+[credential]
+	helper = osxkeychain
+[color]
+	ui = always
+[alias]
+	co = checkout
+	ci = commit
