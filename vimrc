@@ -63,6 +63,12 @@ python del powerline_setup
 " -- always show status bar
 set laststatus=2
 
+" -- always display tabline
+set showtabline=2
+
+" -- hide default vim status messages
+set noshowmode
+
 " --------------- User Settings ---------------
 " -- turn on mouse functionality
 set mouse=a

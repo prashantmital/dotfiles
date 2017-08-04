@@ -11,6 +11,9 @@ source ~/Applications/git-completion.bash
 # EDM autocomplete
 source /Users/pmital/Applications/edm-completion.bash
 
+# Powerline
+export POWERLINE_CONFIG_COMMAND='/Users/pmital/Library/Python/2.7/bin/powerline-config'
+
 ##########################################
 ################### DEV ##################
 ##########################################
