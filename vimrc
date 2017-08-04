@@ -18,8 +18,6 @@ Plugin 'ctrlpvim/ctrlp.vim'			" Fuzze go-anywhere utility
 Plugin 'tpope/vim-fugitive'			" Git integration
 Plugin 'tmhedberg/SimpylFold'			" Pythonic code-folding
 Plugin 'vim-scripts/indentpython.vim'		" PEP8 compliant indentation
-Plugin 'vim-airline/vim-airline'		" Statusbar vim-airline
-Plugin 'vim-airline/vim-airline-themes'		" Themes for vim-airline
 Plugin 'scrooloose/nerdtree'			" File browser
 Plugin 'tmux-plugins/vim-tmux'			" Plugin for editing tmux.conf
 
@@ -40,10 +38,6 @@ call togglebg#map("<F5>")
 " -- SimpylFold plugin customization
 let g:SimpylFold_docstring_preview=1
 
-" -- Airline settings
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-
 " -- NERDTree settings
 let NERDTreeIgnore=['\.pyc$', '\~$']											" ignore files in NERDTree
 autocmd StdinReadPre * let s:std_in=1											" open NERDTree when vim startsup and no files were specified
@@ -58,6 +52,16 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif					
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 " see :h vundle for more details or wiki for FAQ
+
+" ----------------- Powerline -----------------
+
+" -- start powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+" -- always show status bar
+set laststatus=2
 
 " --------------- User Settings ---------------
 " -- turn on mouse functionality
