@@ -44,6 +44,9 @@ let g:SimpylFold_docstring_preview=1
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 
+" -- Flake8 settings
+autocmd BufWritePost *.py,*.pyx call Flake8()			" run Flake8 whenever a python file is saved
+
 " -- NERDTree settings
 let NERDTreeIgnore=['\.pyc$', '\~$']											" ignore files in NERDTree
 autocmd StdinReadPre * let s:std_in=1											" open NERDTree when vim startsup and no files were specified
