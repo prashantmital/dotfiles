@@ -11,11 +11,12 @@ Plugin 'VundleVim/Vundle.vim'		" let Vundle manage itself
 
 " -- add all plugins here
 Plugin 'Valloric/YouCompleteMe'			" Auto-completion
-Plugin 'scrooloose/syntastic'			" Syntax-checking
 Plugin 'nvie/vim-flake8'			" Flake8 de-linter
 Plugin 'altercation/vim-colors-solarized'	" Solarized colorscheme
 Plugin 'ctrlpvim/ctrlp.vim'			" Fuzze go-anywhere utility
 Plugin 'tpope/vim-fugitive'			" Git integration
+Plugin 'tpope/vim-rhubarb'          " GitHub integration
+Plugin 'airblade/vim-gitgutter'     " Show git information in gutter
 Plugin 'tmhedberg/SimpylFold'			" Pythonic code-folding
 Plugin 'vim-scripts/indentpython.vim'		" PEP8 compliant indentation
 Plugin 'vim-airline/vim-airline'		" Statusbar vim-airline
@@ -29,6 +30,7 @@ filetype plugin indent on
 
 " -- YouCompleteMe plugin customizations
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_goto_buffer_command='new-or-existing-tab'
 map <leader>g :YcmCompleter GoTo<CR>
 
 " -- Solarized colorscheme customizations
@@ -46,6 +48,12 @@ let g:airline_solarized_bg='dark'
 
 " -- Flake8 settings
 autocmd BufWritePost *.py,*.pyx call Flake8()			" run Flake8 whenever a python file is saved
+let g:flake8_show_in_gutter=1  					" show Flake8 errors in gutter
+let flake8_error_marker='>>'     				" set error marker to '>>'
+let g:flake8_warning_marker='WW'   				" set warning marker to 'WW'
+let g:flake8_pyflake_marker='EE'     				" set PyFlakes marker to 'EE'
+let g:flake8_complexity_marker='CC'  				" set complexity warnings to 'CC'
+let g:flake8_naming_marker='XX'      				" set naming marker to 'XX'
 
 " -- NERDTree settings
 let NERDTreeIgnore=['\.pyc$', '\~$']											" ignore files in NERDTree
