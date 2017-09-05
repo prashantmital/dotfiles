@@ -56,6 +56,7 @@ let g:flake8_complexity_marker='CC'  				" set complexity warnings to 'CC'
 let g:flake8_naming_marker='XX'      				" set naming marker to 'XX'
 
 " -- NERDTree settings
+let NERDTreeShowHidden=1                                                        " show hidden files
 let NERDTreeIgnore=['\.pyc$', '\~$']											" ignore files in NERDTree
 autocmd StdinReadPre * let s:std_in=1											" open NERDTree when vim startsup and no files were specified
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif						" open NERDTree when vim startsup and no files were specified
