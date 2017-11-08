@@ -15,8 +15,8 @@ Plugin 'nvie/vim-flake8'			" Flake8 de-linter
 Plugin 'altercation/vim-colors-solarized'	" Solarized colorscheme
 Plugin 'ctrlpvim/ctrlp.vim'			" Fuzze go-anywhere utility
 Plugin 'tpope/vim-fugitive'			" Git integration
-Plugin 'tpope/vim-rhubarb'          " GitHub integration
-Plugin 'airblade/vim-gitgutter'     " Show git information in gutter
+Plugin 'tpope/vim-rhubarb'          		" GitHub integration
+Plugin 'airblade/vim-gitgutter'     		" Show git information in gutter
 Plugin 'tmhedberg/SimpylFold'			" Pythonic code-folding
 Plugin 'vim-scripts/indentpython.vim'		" PEP8 compliant indentation
 Plugin 'vim-airline/vim-airline'		" Statusbar vim-airline

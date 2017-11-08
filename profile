@@ -78,8 +78,6 @@ export PS1='[\u:\w] $ '
 ##########################################
 # Installing python with homebrew gives `python2` and `python3` executables
 # Corresponding `pip` entrypoints are `pip2` and `pip3`
-# We set `pip` to point to `pip2`
-alias pip='pip2'
 
 # Disable pip package installations outside virtualenvs
 export PIP_REQUIRE_VIRTUALENV=True
