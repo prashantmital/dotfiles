@@ -86,3 +86,9 @@ export PS1='[\u:\w] $ '
 #gpip(){
 #    PIP_REQUIRE_VIRTUALENV="" pip "$@"
 #}
+
+##########################################
+############### ITERM2  ##################
+##########################################
+# Shell integration for iTerm2
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
