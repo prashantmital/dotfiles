@@ -80,9 +80,9 @@ export PS1='[\u:\w] $ '
 # Corresponding `pip` entrypoints are `pip2` and `pip3`
 
 # Disable pip package installations outside virtualenvs
-export PIP_REQUIRE_VIRTUALENV=True
+#export PIP_REQUIRE_VIRTUALENV=True
 
 # Create special gpip() function to execute global pip commands
-gpip(){
-    PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
+#gpip(){
+#    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+#}
