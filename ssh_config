@@ -6,5 +6,3 @@ Host *
     ForwardX11 yes
     ForwardX11Trusted yes
     Compression yes
-    ControlMaster auto
-    ControlPath /Users/pmital/.ssh/connection_pool/%h_%p_%r
