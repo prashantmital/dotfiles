@@ -51,6 +51,9 @@ alias hist='history'
 #alias ql='qlmanage -p 2>/dev/null'
 #alias query_linux_version='lsb_release -a'
 
+# Homebrew maintenance
+alias brew-tend='brew update;brew upgrade;brew doctor;brew prune;brew cleanup -s'
+
 # Default editor
 export EDITOR=vim
 
