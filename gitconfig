@@ -9,3 +9,7 @@
 [alias]
 	co = checkout
 	ci = commit
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/local/bin/gpg
