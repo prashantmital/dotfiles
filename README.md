@@ -1,23 +1,22 @@
 README
 ======
 
-The `dotfiles` project aims to create a powerful, portable development
-environment.
+My `dotfiles`.
 
 
 Startup script
 --------------
 
-The `profile` script should be symlinked to `~/.profile` to activate the
+The `bash_profile` script should be symlinked to `$HOME/.bash_profile` to activate the
 customizations described therein. In order to ensure propagation of shell
-customizations to all login shells, a symlink called `~/.bashrc` should also be
+customizations to all login shells, a symlink called `$HOME/.bashrc` should also be
 created.
 
 
-Solarized colorscheme
----------------------
+Solarized color scheme
+----------------------
 
-The colorscheme must be installed manually for the terminal emulator being
+The color scheme must be installed manually for the terminal emulator being
 used. The instructions for this can be found in the project repository.
 Installation for VIm is automated by Vundle (see below).
 

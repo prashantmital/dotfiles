@@ -1,10 +1,7 @@
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-[user]
-	name = Prashant Mital
-	email = prashantmital@gmail.com
+[include]
+	path = ~/.gitconfig_default
+[includeIf "gitdir:**/*genia*/"]
+	path = ~/.gitconfig_genia
 [credential]
 	helper = osxkeychain
 [color]
