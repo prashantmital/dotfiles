@@ -52,4 +52,6 @@ alias brew-tend='brew update;brew upgrade;brew doctor;brew prune;brew cleanup -s
 #gpip(){
 #    PIP_REQUIRE_VIRTUALENV="" pip "$@"
 #}
+
+# Set GPG TTY
 export GPG_TTY=$(tty)
