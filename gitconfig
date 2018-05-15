@@ -13,3 +13,5 @@
 	gpgsign = true
 [gpg]
 	program = /usr/local/bin/gpg
+[user]
+	signingkey = 3D2DAA9E483ABE51

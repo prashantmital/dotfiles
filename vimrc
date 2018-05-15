@@ -10,7 +10,7 @@ call vundle#begin()			" initialize Vundle
 Plugin 'VundleVim/Vundle.vim'		" let Vundle manage itself
 
 " -- add all plugins here
-Plugin 'Valloric/YouCompleteMe'			" Auto-completion
+"Plugin 'Valloric/YouCompleteMe'		" Auto-completion [DISABLED]
 Plugin 'nvie/vim-flake8'			" Flake8 de-linter
 Plugin 'altercation/vim-colors-solarized'	" Solarized colorscheme
 Plugin 'ctrlpvim/ctrlp.vim'			" Fuzze go-anywhere utility

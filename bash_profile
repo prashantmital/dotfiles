@@ -8,32 +8,6 @@ w
 # Enable git tab-completion
 source ~/Applications/git-completion.bash
 
-# EDM autocomplete
-source /Users/pmital/Applications/edm-completion.bash
-
-##########################################
-################### DEV ##################
-##########################################
-
-# Spark and PySpark related settings
-#export SPARK_HOME="${HOME}/spark-1.6.0"
-#export PYSPARK_SUBMIT_ARGS="--master local[2]"
-#alias pyspark="${SPARK_HOME}/bin/pyspark"
-
-# Docker commands
-#eval "$(docker-machine env default)"
-
-##########################################
-############## ENTHOUGHT #################
-##########################################
-
-# Export credentials for hatcher
-alias authenticate_hatcher='source ~/Applications/hatcher_authenticate.sh'
-
-# Added by Canopy installer 
-# VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make the bash prompt show that Canopy is active, otherwise 1
-#alias activate_canopy="source '/Users/pmital/Library/Enthought/Canopy/edm/envs/User/bin/activate'"
-#VIRTUAL_ENV_DISABLE_PROMPT=1 
 
 ##########################################
 ################# STABLE #################
@@ -51,9 +25,6 @@ alias hist='history'
 #alias ql='qlmanage -p 2>/dev/null'
 #alias query_linux_version='lsb_release -a'
 
-# Homebrew maintenance
-alias brew-tend='brew update;brew upgrade;brew doctor;brew prune;brew cleanup -s'
-
 # Default editor
 export EDITOR=vim
 
@@ -63,22 +34,14 @@ export CLICOLOR=1
 # Prompt modifier
 export PS1='[\u:\w] $ '
 
-##########################################
-############## POWERLINE #################
-##########################################
-
-#export PATH="/Users/pmital/Library/Python/2.7/bin:${PATH}"
-#export POWERLINE_CONFIG_COMMAND="/opt/local/bin/powerline-config-2.7"
-#export POWERLINE_COMMAND="/opt/local/bin/powerline-2.7"
-#/opt/local/bin/powerline-daemon-2.7 -q
-#POWERLINE_BASH_CONTINUATION=1
-#POWERLINE_BASH_SELECT=1
-#repository_root=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages
-#. ${repository_root}/powerline/bindings/bash/powerline.sh
 
 ##########################################
 ############### HOMEBREW #################
 ##########################################
+
+# Make Homebrew maintenance easier
+alias brew-tend='brew update;brew upgrade;brew doctor;brew prune;brew cleanup -s'
+
 # Installing python with homebrew gives `python2` and `python3` executables
 # Corresponding `pip` entrypoints are `pip2` and `pip3`
 
@@ -89,9 +52,4 @@ export PS1='[\u:\w] $ '
 #gpip(){
 #    PIP_REQUIRE_VIRTUALENV="" pip "$@"
 #}
-
-##########################################
-############### ITERM2  ##################
-##########################################
-# Shell integration for iTerm2
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+export GPG_TTY=$(tty)
