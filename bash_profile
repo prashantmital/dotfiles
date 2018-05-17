@@ -10,13 +10,28 @@ source ~/Applications/git-completion.bash
 
 
 ##########################################
+############### MONGODB ##################
+##########################################
+
+# Shortcut to populate path for production mongoDB
+mdb_prod() {
+    export PATH="$HOME/Developer/mongodb_enterprise_3.6.4/bin:$PATH"
+
+    # Use mongod --dbpath $MDB_DATA_DIR to use this location for data storage
+    MDB_DATA_DIR="$HOME/Developer/mongodb_enterprise_3.6.4/data"
+    if ! [[ -d $MDB_DATA_DIR ]]; then mkdir $MDB_DATA_DIR; fi
+    export MDB_DATA_DIR=$MDB_DATA_DIR
+}
+
+
+##########################################
 ################# STABLE #################
 ##########################################
 
 # Shortcuts
-alias l='ls -GFlash'
-alias dev='cd ~/Developer'
-alias hist='history'
+alias l="ls -GFlash"
+alias dev="cd ~/Developer"
+alias hist="history"
 #alias ..='cd ../'
 #alias shutdown='sudo shutdown -h now "Shut Down Initiated by Super User"'
 #alias sleep='sudo shutdown -s +1 "Sleep Sequence Initiated by Super User"'
@@ -32,7 +47,7 @@ export EDITOR=vim
 export CLICOLOR=1
 
 # Prompt modifier
-export PS1='[\u:\w] $ '
+export PS1="[\u:\w] $ "
 
 
 ##########################################
@@ -40,7 +55,7 @@ export PS1='[\u:\w] $ '
 ##########################################
 
 # Make Homebrew maintenance easier
-alias brew-tend='brew update;brew upgrade;brew doctor;brew prune;brew cleanup -s'
+alias brew-tend="brew update;brew upgrade;brew doctor;brew prune;brew cleanup -s"
 
 # Installing python with homebrew gives `python2` and `python3` executables
 # Corresponding `pip` entrypoints are `pip2` and `pip3`
