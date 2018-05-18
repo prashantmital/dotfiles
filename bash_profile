@@ -8,20 +8,35 @@ w
 # Enable git tab-completion
 source ~/Applications/git-completion.bash
 
+# Make custom apps avaialable on the CLI
+export PATH="$HOME/Applications/bin:$PATH"
+
 
 ##########################################
 ############### MONGODB ##################
 ##########################################
 
 # Shortcut to populate path for production mongoDB
-mdb_prod() {
-    export PATH="$HOME/Developer/mongodb_enterprise_3.6.4/bin:$PATH"
+_MDB_DEFAULT_VERSION="3.6.4"
+mdb_enable() {
+    # Allow user to specify custom version
+    if [[ -n $1 ]]; then _MDB_VERSION=$1; else _MDB_VERSION=$_MDB_DEFAULT_VERSION; fi
+
+    # Compute constants
+    _MDB_INSTALL_BASE_DIR="$HOME/Developer/server_mongodb_$_MDB_VERSION"
+    _MDB_INSTALL_BIN_DIR="$_MDB_INSTALL_BASE_DIR/bin"
+    _MDB_INSTALL_DATA_DIR="$_MDB_INSTALL_BASE_DIR/data"
+
+    # Make mongoDB binaries available from prompt
+    export PATH="$_MDB_INSTALL_BIN_DIR:$PATH"
 
     # Use mongod --dbpath $MDB_DATA_DIR to use this location for data storage
-    MDB_DATA_DIR="$HOME/Developer/mongodb_enterprise_3.6.4/data"
-    if ! [[ -d $MDB_DATA_DIR ]]; then mkdir $MDB_DATA_DIR; fi
-    export MDB_DATA_DIR=$MDB_DATA_DIR
+    if ! [[ -d $_MDB_INSTALL_DATA_DIR ]]; then mkdir $_MDB_INSTALL_DATA_DIR; fi
+    export MDB_DATA_DIR=$_MDB_INSTALL_DATA_DIR
 }
+
+# MongoDB code review tool
+alias cr="$HOME/.pyenv/versions/2.7.15/bin/python $HOME/Applications/mongodb_cr_upload.py -y -e prashant.mital@10gen.com --git_similarity=100"
 
 
 ##########################################
@@ -67,3 +82,12 @@ alias brew-tend="brew update;brew upgrade;brew doctor;brew prune;brew cleanup -s
 #gpip(){
 #    PIP_REQUIRE_VIRTUALENV="" pip "$@"
 #}
+
+
+##########################################
+################ PYTHON ##################
+##########################################
+
+# Modify paths for pyenv and pyenv-virtualenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
