@@ -1,7 +1,5 @@
-[include]
-	path = ~/.gitconfig_default
-[includeIf "gitdir:**/*genia*/"]
-	path = ~/.gitconfig_genia
+#[includeIf "gitdir:**/*mongo*/"]
+#	path = ~/.gitconfig_mongo
 [credential]
 	helper = osxkeychain
 [color]
