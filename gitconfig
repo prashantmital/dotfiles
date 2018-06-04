@@ -15,3 +15,5 @@
 	signingkey = 3D2DAA9E483ABE51
 	name = Prashant Mital
 	email = prashantmital@gmail.com
+[core]
+	excludesfile = /Users/pmital/.gitignore-system
