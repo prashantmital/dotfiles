@@ -3,7 +3,7 @@
 [credential]
 	helper = osxkeychain
 [color]
-	ui = always
+	ui = auto
 [alias]
 	co = checkout
 	ci = commit
