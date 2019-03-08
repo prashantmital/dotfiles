@@ -5,55 +5,19 @@
 # Print login information in every new shell
 w
 
-# Enable git tab-completion
-source ~/Applications/git-completion.bash
-
-# Make custom apps avaialable on the CLI
+# Make apps installed in $HOME/Applications available on the CLI
 export PATH="$HOME/Applications/bin:$PATH"
-
-
-##########################################
-############### MONGODB ##################
-##########################################
-
-# Shortcut to populate path for production mongoDB
-_MDB_DEFAULT_VERSION="3.6.4"
-mdb_enable() {
-    # Allow user to specify custom version
-    if [[ -n $1 ]]; then _MDB_VERSION=$1; else _MDB_VERSION=$_MDB_DEFAULT_VERSION; fi
-
-    # Compute constants
-    _MDB_INSTALL_BASE_DIR="$HOME/Developer/server_mongodb_$_MDB_VERSION"
-    _MDB_INSTALL_BIN_DIR="$_MDB_INSTALL_BASE_DIR/bin"
-    _MDB_INSTALL_DATA_DIR="$_MDB_INSTALL_BASE_DIR/data"
-
-    # Make mongoDB binaries available from prompt
-    export PATH="$_MDB_INSTALL_BIN_DIR:$PATH"
-
-    # Use mongod --dbpath $MDB_DATA_DIR to use this location for data storage
-    if ! [[ -d $_MDB_INSTALL_DATA_DIR ]]; then mkdir $_MDB_INSTALL_DATA_DIR; fi
-    export MDB_DATA_DIR=$_MDB_INSTALL_DATA_DIR
-}
-
-# MongoDB code review tool
-alias cr="$HOME/.pyenv/versions/2.7.15/bin/python $HOME/Applications/mongodb_cr_upload.py -y -e prashant.mital@10gen.com --git_similarity=100"
 
 
 ##########################################
 ################# STABLE #################
 ##########################################
 
-# Shortcuts
+# My shortcuts
 alias l="ls -GFlash"
-alias dev="cd ~/Developer"
+alias dev="cd /Users/pmital/Developer"
+alias devpy="cd /Users/pmital/Developer/python-virtualenvs/"
 alias hist="history"
-#alias ..='cd ../'
-#alias shutdown='sudo shutdown -h now "Shut Down Initiated by Super User"'
-#alias sleep='sudo shutdown -s +1 "Sleep Sequence Initiated by Super User"'
-#alias restart='sudo shutdown -r now "Restart sequence Initiated by Super User"'
-#alias cpuinfo='sysctl -a | grep machdep.cpu'
-#alias ql='qlmanage -p 2>/dev/null'
-#alias query_linux_version='lsb_release -a'
 
 # Default editor
 export EDITOR=vim
@@ -70,24 +34,94 @@ export PS1="[\u:\w] $ "
 ##########################################
 
 # Make Homebrew maintenance easier
-alias brew-tend="brew update;brew upgrade;brew doctor;brew prune;brew cleanup -s"
+alias brew-tend="brew update;brew upgrade;brew doctor;brew cleanup --prune-prefix;brew cleanup -s"
 
-# Installing python with homebrew gives `python2` and `python3` executables
-# Corresponding `pip` entrypoints are `pip2` and `pip3`
+# Enable tab-completion using Homebrew-installed bash-completion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-# Disable pip package installations outside virtualenvs
-#export PIP_REQUIRE_VIRTUALENV=True
-
-# Create special gpip() function to execute global pip commands
-#gpip(){
-#    PIP_REQUIRE_VIRTUALENV="" pip "$@"
-#}
+# Make apps installed in /usr/local/sbin/ available on the CLI
+export PATH="/usr/local/sbin:$PATH"
 
 
 ##########################################
 ################ PYTHON ##################
 ##########################################
 
-# Modify paths for pyenv and pyenv-virtualenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# Activate conda
+alias conda-activate='source /Users/pmital/miniconda3/etc/profile.d/conda.sh'
+
+# Activate pyenv
+alias pyenv-activate='eval "$(pyenv init -)"'
+
+# Disable pip package installations outside virtualenvs
+export PIP_REQUIRE_VIRTUALENV=True
+
+# Create special gpip() function to execute global pip commands
+gpip(){
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
+# Function that provides a simple, high-level, virtualenv management interface
+# for pyenv-install virtualenvs. Note that:
+#   - the environemnt prefix is hardcoded.
+#   - the environment activated when this function is invoked must have virtualenv installed.
+#   - pyenv must have been initialized before this function is used.
+function myvenv {
+    # Directory where all virtualenvs will live.
+    envpath=~/Developer/python-virtualenvs/.managed_environments
+
+    if [ $# -eq 0 ]; then
+	echo "Run the 'help' command to see a list of available commands"
+
+    elif [ "$1" = "help" ]; then
+        echo "Available commands: help | list | prefix | create <pyversion> <name> | activate <name> | remove <name>"
+
+    elif [ "$1" = "list" ]; then
+	basename `ls -d $envpath/*/ 2> /dev/null` 2> /dev/null
+
+    elif [ "$1" = "prefix" ]; then
+	echo "Managed virtualenv path: $envpath"
+
+    elif [ "$1" = "create" ]; then
+	if [ $# -ne 3 ]; then
+	    echo "Must provide an environment name and python executable version"
+	    return 1
+	fi
+	envnamepath=$envpath/$3
+	if [ -d $envnamepath ]; then
+	    echo "Virtualenv with that name already exists"
+	    return 1
+        fi
+	# Users may provide incomplete versions. If it matches just one of the available
+	# pyenv-installed runtime versions, we go ahead and install that. This command searches
+	# the list of available runtime versions. xargs is used to eliminate leading and trailing
+	# whitespace.
+	pyversion=`pyenv versions | grep -i $2 | xargs`
+	if [[ -z $pyversion ]] || [[ $pyversion == *" "* ]]; then
+	    echo "Given version matches none or more than one available python versions."
+	    return 1
+        fi
+	virtualenv --python=`pyenv prefix $pyversion`/bin/python $envnamepath
+
+    elif [ "$1" = "activate" ]; then
+	if [ $# -ne 2 ]; then
+	    echo "Must provide an environment name"
+	    return 1
+        fi
+	envnamepath=$envpath/$2
+	if ! [ -d $envpath ]; then
+	    echo "No such virtualenv"
+	    return 1
+        fi
+	source $envnamepath/bin/activate
+
+    elif [ "$1" = "remove" ]; then
+        envnamepath=$envpath/$2
+	if ! [ -d $envpath ]; then
+	    echo "No such virtualenv"
+        fi
+	rm -rf $envnamepath
+    else
+        echo "No command or unrecognized command."
+    fi
+}
