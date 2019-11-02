@@ -1,3 +1,8 @@
+#########################################
+############## MONGODB ##################
+#########################################
+alias sshworkstation='ssh pmital@10.78.194.163'
+
 ##########################################
 ################## UI ####################
 ##########################################
@@ -7,6 +12,9 @@ w
 
 # Make apps installed in $HOME/Applications available on the CLI
 export PATH="$HOME/Applications/bin:$PATH"
+
+# Set mongo orchestration home folder
+export MONGO_ORCHESTRATION_HOME="/Users/pmital/Developer/mo-output"
 
 
 ##########################################
@@ -18,6 +26,8 @@ alias l="ls -GFlash"
 alias dev="cd /Users/pmital/Developer"
 alias devpy="cd /Users/pmital/Developer/python-virtualenvs/"
 alias hist="history"
+alias git-tend="git branch | grep -v \"master\" | xargs git branch -D"
+alias git-resync="git checkout master && git fetch upstream && git pull --rebase upstream master && git push"
 
 # Default editor
 export EDITOR=vim
@@ -42,6 +52,8 @@ alias brew-tend="brew update;brew upgrade;brew doctor;brew cleanup --prune-prefi
 # Make apps installed in /usr/local/sbin/ available on the CLI
 export PATH="/usr/local/sbin:$PATH"
 
+# Make brew-installed ruby available on the CLI
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 ##########################################
 ################ PYTHON ##################
@@ -59,6 +71,10 @@ export PIP_REQUIRE_VIRTUALENV=True
 # Create special gpip() function to execute global pip commands
 gpip(){
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+# Same as above but for python3/pip3
+gpip3(){
+    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
 
 # Function that provides a simple, high-level, virtualenv management interface
@@ -96,7 +112,7 @@ function myvenv {
 	# pyenv-installed runtime versions, we go ahead and install that. This command searches
 	# the list of available runtime versions. xargs is used to eliminate leading and trailing
 	# whitespace.
-	pyversion=`pyenv versions | grep -i $2 | xargs`
+	pyversion=`pyenv versions --bare | grep -i $2 | xargs`
 	if [[ -z $pyversion ]] || [[ $pyversion == *" "* ]]; then
 	    echo "Given version matches none or more than one available python versions."
 	    return 1
